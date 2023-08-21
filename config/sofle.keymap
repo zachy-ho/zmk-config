@@ -11,6 +11,8 @@
 #define BASE 0
 #define LAY1 1
 #define LAY2 2
+#define LAY3 3
+#define LAY4 4
 
 / {
     keymap {
@@ -26,9 +28,9 @@
             bindings = <
 &kp GRAVE &kp N1      &kp N2     &kp N3     &kp N4       &kp N5                           &kp N6     &kp N7       &kp N8     &kp N9     &kp N0         &none
 &kp TAB   &kp Q       &kp W      &kp E      &kp R        &kp T                            &kp Y      &kp U        &kp I      &kp O      &kp P          &kp BSPC
-&kp ESC   &mt LCTRL A &mt LALT S &mt LGUI D &mt LSHIFT F &kp G                            &kp H      &mt RSHIFT J &mt RGUI K &mt RALT L &mt RCTRL SEMI &kp RETURN
+&kp ESC   &kp A &kp S &kp D &kp F &kp G                            &kp H      &kp J &kp K &kp L &kp SEMI &kp RETURN
 &mo LAY1  &kp Z       &kp X      &kp C      &kp V        &kp B    &kp C_MUTE &kp C_MUTE   &kp N      &kp M      &kp COMMA      &kp DOT &kp FSLH &kp BSLH
-                      &none      &none      &none        &mo LAY2 &kp SPACE  &mo LAY1     &mo LAY2   &none      &none          &none
+                      &none      &none      &mo LAY3        &mo LAY2 &kp SPACE  &mo LAY1     &mo LAY2   &mo LAY4      &none          &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -64,9 +66,44 @@
 &trans &trans &trans &trans &trans &trans               &trans    &trans &trans &trans &kp MINUS &kp EQUAL
 &trans &trans &trans &trans &trans &trans               &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
 &trans &trans &trans &trans &trans &trans               &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
-&trans &trans &trans &trans &trans &trans               &kp N0    &kp N1 &kp N2 &kp N3 &trans    &trans
-              &trans &trans &trans &trans &trans &trans &trans &trans &trans  &trans
-              &trans &trans &trans &trans &trans &trans &trans &trans &trans  &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &kp N0    &kp N1 &kp N2 &kp N3 &trans    &trans
+              &trans &trans &trans &trans &trans &trans &trans    &trans &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        left_mod_layer {
+// ------------------------------------------------------------------------------------------------------------
+// |       |       |       |       |       |       |                 |       |       |       |       |       |       |
+// |       |       |       |       |       |       |                 |       |       |       |       |       |       |
+// |       | LCTRL | LALT  | LGUI  | LSHIFT|       |                 |       |       |       |       |       |       |
+// |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |
+//                 |       |       |       |       |      |  |       |       |       |       |       |
+            bindings = <
+&trans &trans    &trans   &trans   &trans     &trans               &trans &trans &trans &trans &trans &trans
+&trans &trans    &trans   &trans   &trans     &trans               &trans &trans &trans &trans &trans &trans
+&trans &kp LCTRL &kp LALT &kp LGUI &kp LSHIFT &trans               &trans &trans &trans &trans &trans &trans
+&trans &trans    &trans   &trans   &trans     &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                 &trans   &trans   &trans     &trans &trans &trans &trans &trans &trans &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        right_mod_layer {
+// ------------------------------------------------------------------------------------------------------------
+// |       |       |       |       |       |       |                 |       |       |       |       |       |       |
+// |       |       |       |       |       |       |                 |       |       |       |       |       |       |
+// |       |       |       |       |       |       |                 |       | RSHIFT| RGUI  | RALT  | RSHIFT|       |
+// |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |
+//                 |       |       |       |       |      |  |       |       |       |       |       |
+            bindings = <
+&trans &trans    &trans   &trans   &trans     &trans               &trans &trans &trans &trans &trans &trans
+&trans &trans    &trans   &trans   &trans     &trans               &trans &trans &trans &trans &trans &trans
+&trans &trans    &trans   &trans   &trans     &trans               &trans &kp RSHIFT &kp RGUI &kp RALT &kp RSHIFT &trans
+&trans &trans    &trans   &trans   &trans     &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                 &trans   &trans   &trans     &trans &trans &trans &trans &trans &trans &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
