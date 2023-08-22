@@ -9,34 +9,34 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define BASE 0
-#define LAY1 1
-#define LAY2 2
-#define LAY3 3 // left_mod_layer
-#define LAY4 4 // right_mod_layer
+#define L_NAV 1 
+#define L_NUM 2
+#define L_LMOD 3
+#define L_RMOD 4
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
+        layer_base {
 // ------------------------------------------------------------------------------------------------------------
-// |  LAY1  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-// |  TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC  |
+// |   ˙    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
+// |  TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
 // |  ESC   |  A  |  D  |  D   |  F   |  G   |                   |  H   |  J    |  K    | L    |   ;   |RETURN |
-// |  LAY2  |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | MUTE  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//                |LCTL | LALT | LGUI | SPACE|  LAY3  |  | LAY4  | LAY1 | LAY2  |       |      |
+// |  L_NAV |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | MUTE  |  N   |  M    |  ,    |  .   |   /   | \     |
+//                |     |      |L_LMOD| L_NUM|  SPACE |  | L_NAV | L_NUM|L_RMOD |       | CAPS |
             bindings = <
-&mo LAY1      &kp N1   &kp N2   &kp N3   &kp N4    &kp N5                          &kp N6   &kp N7   &kp N8    &kp N9  &kp N0   &none
-&kp TAB       &kp Q    &kp W    &kp E    &kp R     &kp T                           &kp Y    &kp U    &kp I     &kp O   &kp P    &kp BSPC
-&mt LCTRL ESC &kp A    &kp S    &kp D    &kp F     &kp G                           &kp H    &kp J    &kp K     &kp L   &kp SEMI &kp RETURN
-&mo LAY2      &kp Z    &kp X    &kp C    &kp V     &kp B     &kp C_MUTE &kp C_MUTE &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
-                       &kp LCTL &kp LALT &kp LGUI  &kp SPACE &mo LAY3   &mo LAY4   &mo LAY1 &mo LAY2 &none     &none
+&kp GRAVE     &kp N1   &kp N2   &kp N3   &kp N4     &kp N5                          &kp N6    &kp N7     &kp N8    &kp N9  &kp N0   &none
+&kp TAB       &kp Q    &kp W    &kp E    &kp R      &kp T                           &kp Y     &kp U      &kp I     &kp O   &kp P    &kp BSPC
+&mt LCTRL ESC &kp A    &kp S    &kp D    &kp F      &kp G                           &kp H     &kp J      &kp K     &kp L   &kp SEMI &kp RETURN
+&mo L_NAV     &kp Z    &kp X    &kp C    &kp V      &kp B     &kp C_MUTE &kp C_MUTE &kp N     &kp M      &kp COMMA &kp DOT &kp FSLH &kp BSLH
+                       &none    &none    &mo L_LMOD &mo L_NUM &kp SPACE  &mo L_NAV  &mo L_NUM &mo L_RMOD &none     &kp CAPS
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        first_layer {
+        layer_nav {
 // TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------
 // |       |  F1   |   F2  |   F3  |  F4   |  F5   |                 |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |
@@ -53,23 +53,23 @@
             >;
         };
 
-        second_layer {
+        layer_num {
 // ------------------------------------------------------------------------------------------------------------
 // |       |       |       |       |       |       |                 |       |       |       |       | MINUS | EQUAL |
 // |       |  EXCL | AT    |  HASH | DLLR  | PRCNT |                 |       |   7   |   8   |   9   | LBKT  | RBKT  |
 // |       | CARET | AMPS  | ASTRK | LPAR  | RPAR  |                 |   `   |   4   |   5   |   6   |       |  SQT  |
-// |       |       |       |       |       |       |      |  |       |   0   |   1   |   2   |   3   |  \    |       |
+// |       |       |       |       |       |       |      |  |       |   0   |   1   |   2   |   3   |       |       |
 //                 |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
-&trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &trans &trans &kp MINUS &kp EQUAL
-&trans &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
-&trans &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR  &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
-&trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &kp N0 &kp N1 &kp N2    &kp N3 &kp BSLH &trans
-                 &trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &trans &trans
+&trans &trans    &trans   &trans    &trans   &trans                     &trans    &trans &trans &trans &kp MINUS &kp EQUAL
+&trans &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT                  &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
+&trans &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR                   &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
+&trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &kp N0    &kp N1 &kp N2 &kp N3 &none     &trans
+                 &trans   &trans    &trans   &trans    &trans    &trans &trans    &trans &trans &trans
             >;
         };
 
-        left_mod_layer {
+        layer_lmod {
 // ------------------------------------------------------------------------------------------------------------
 // |       |       |       |       |       |       |                 |       |       |       |       |       |       |
 // |       |       |       |       |       |       |                 |       |       |       |       |       |       |
@@ -85,7 +85,7 @@
             >;
         };
 
-        right_mod_layer {
+        layer_rmod {
 // ------------------------------------------------------------------------------------------------------------
 // |       |       |       |       |       |       |                 |       |       |       |       |       |       |
 // |       |       |       |       |       |       |                 |       |       |       |       |       |       |
