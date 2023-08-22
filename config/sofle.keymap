@@ -23,13 +23,13 @@
 // |   ˙    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
 // |  TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
 // |  ESC   |  A  |  D  |  D   |  F   |  G   |                   |  H   |  J    |  K    | L    |   ;   |RETURN |
-// |  L_NAV |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | MUTE  |  N   |  M    |  ,    |  .   |   /   | \     |
+// | LSHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | MUTE  |  N   |  M    |  ,    |  .   |   /   | RSHIFT|
 //                |     |      |L_LMOD| L_NUM|  SPACE |  | L_NAV | L_NUM|L_RMOD |       | CAPS |
             bindings = <
 &kp GRAVE     &kp N1   &kp N2   &kp N3   &kp N4     &kp N5                          &kp N6    &kp N7     &kp N8    &kp N9  &kp N0   &none
 &kp TAB       &kp Q    &kp W    &kp E    &kp R      &kp T                           &kp Y     &kp U      &kp I     &kp O   &kp P    &kp BSPC
 &mt LCTRL ESC &kp A    &kp S    &kp D    &kp F      &kp G                           &kp H     &kp J      &kp K     &kp L   &kp SEMI &kp RETURN
-&mo L_NAV     &kp Z    &kp X    &kp C    &kp V      &kp B     &kp C_MUTE &kp C_MUTE &kp N     &kp M      &kp COMMA &kp DOT &kp FSLH &kp BSLH
+&kp LSHIFT    &kp Z    &kp X    &kp C    &kp V      &kp B     &kp C_MUTE &kp C_MUTE &kp N     &kp M      &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
                        &none    &none    &mo L_LMOD &mo L_NUM &kp SPACE  &mo L_NAV  &mo L_NUM &mo L_RMOD &none     &kp CAPS
             >;
 
@@ -58,13 +58,13 @@
 // |       |       |       |       |       |       |                 |       |       |       |       | MINUS | EQUAL |
 // |       |  EXCL | AT    |  HASH | DLLR  | PRCNT |                 |       |   7   |   8   |   9   | LBKT  | RBKT  |
 // |       | CARET | AMPS  | ASTRK | LPAR  | RPAR  |                 |   `   |   4   |   5   |   6   |       |  SQT  |
-// |       |       |       |       |       |       |      |  |       |   0   |   1   |   2   |   3   |       |       |
+// |       |       |       |       |       |       |      |  |       |   0   |   1   |   2   |   3   |  \    |       |
 //                 |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
 &trans &trans    &trans   &trans    &trans   &trans                     &trans    &trans &trans &trans &kp MINUS &kp EQUAL
 &trans &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT                  &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
 &trans &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR                   &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
-&trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &kp N0    &kp N1 &kp N2 &kp N3 &none     &trans
+&trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &kp N0    &kp N1 &kp N2 &kp N3 &kp BSLH  &trans
                  &trans   &trans    &trans   &trans    &trans    &trans &trans    &trans &trans &trans
             >;
         };
