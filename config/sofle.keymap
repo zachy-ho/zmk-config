@@ -9,8 +9,8 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define BASE 0
-#define L_NAV 1 
-#define L_NUM 2
+#define L_SYM 1 // navigation, symbols, fn
+#define L_NUM 2 // numpad, right-corner symbols
 #define L_LMOD 3
 #define L_RMOD 4
 #define L_MED 5
@@ -25,46 +25,46 @@
 // |  TAB   |  Q  |  W    |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
 // |  ESC   |  A  |  D    |  D   |  F   |  G   |                   |  H   |  J    |  K    | L    |   ;   |RETURN |
 // | LSHIFT |  Z  |  X    |  C   |  V   |  B   |  MUTE  |  | MUTE  |  N   |  M    |  ,    |  .   |   /   | RSHIFT|
-//                | L_MED |      |L_LMOD| L_NUM|  SPACE |  | L_NAV | L_NUM|L_RMOD |       | CAPS |
+//                | L_MED |      |L_LMOD| L_NUM|  SPACE |  | L_SYM | L_NUM|L_RMOD |       | CAPS |
             bindings = <
 &kp GRAVE     &kp N1   &kp N2    &kp N3   &kp N4     &kp N5                          &kp N6    &kp N7     &kp N8    &kp N9  &kp N0   &none
 &kp TAB       &kp Q    &kp W     &kp E    &kp R      &kp T                           &kp Y     &kp U      &kp I     &kp O   &kp P    &kp BSPC
 &mt LCTRL ESC &kp A    &kp S     &kp D    &kp F      &kp G                           &kp H     &kp J      &kp K     &kp L   &kp SEMI &kp RETURN
 &kp LSHIFT    &kp Z    &kp X     &kp C    &kp V      &kp B     &kp C_MUTE &kp C_MUTE &kp N     &kp M      &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
-                       &mo L_MED &none    &mo L_LMOD &mo L_NUM &kp SPACE  &mo L_NAV  &mo L_NUM &mo L_RMOD &none     &kp CAPS
+                       &mo L_MED &none    &mo L_LMOD &mo L_NUM &kp SPACE  &mo L_SYM  &mo L_NUM &mo L_RMOD &none     &kp CAPS
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        layer_nav {
+        layer_sym {
 // TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------
 // |       |  F1   |   F2  |   F3  |  F4   |  F5   |                 |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |
-// |       |       |       |       |       |       |                 |       |       |       |       |       |  F12  |
-// |       |       |       |       |       |       |                 | LEFT  | DOWN  |  UP   | RIGHT |       |       |
+// |       |  EXCL | AT    |  HASH | DLLR  | PRCNT |                 |       |       |       |       |       |  F12  |
+// |       | CARET | AMPS  | ASTRK | LPAR  | RPAR  |                 | LEFT  | DOWN  |  UP   | RIGHT |       |       |
 // |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |
 //                 |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
-&trans &kp F1 &kp F2 &kp F3 &kp F4 &kp F5               &kp F6   &kp F7   &kp F8 &kp F9    &kp F10 &kp F11
-&trans &trans &trans &trans &trans &trans               &trans   &trans   &trans &trans    &trans  &kp F12
-&trans &trans &trans &trans &trans &trans               &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans  &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans   &trans   &trans &trans    &trans  &trans
-              &trans &trans &trans &trans &trans &trans &trans &trans &trans  &trans
+&trans &kp F1    &kp F2   &kp F3    &kp F4   &kp F5               &kp F6   &kp F7   &kp F8 &kp F9    &kp F10 &kp F11
+&trans &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT            &trans   &trans   &trans &trans    &trans  &kp F12
+&trans &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR             &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans  &trans
+&trans &trans    &trans   &trans    &trans   &trans &trans &trans &trans   &trans   &trans &trans    &trans  &trans
+                 &trans   &trans    &trans   &trans &trans &trans &trans &trans &trans  &trans
             >;
         };
 
         layer_num {
 // ------------------------------------------------------------------------------------------------------------
 // |       |       |       |       |       |       |                 |       |       |       |       | MINUS | EQUAL |
-// |       |  EXCL | AT    |  HASH | DLLR  | PRCNT |                 |       |   7   |   8   |   9   | LBKT  | RBKT  |
-// |       | CARET | AMPS  | ASTRK | LPAR  | RPAR  |                 |   `   |   4   |   5   |   6   |       |  SQT  |
+// |       |       |       |       |       |       |                 |       |   7   |   8   |   9   | LBKT  | RBKT  |
+// |       |       |       |       |       |       |                 |   `   |   4   |   5   |   6   |       |  SQT  |
 // |       |       |       |       |       |       |      |  |       |   0   |   1   |   2   |   3   |  \    |       |
 //                 |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
 &trans &trans    &trans   &trans    &trans   &trans                     &trans    &trans &trans &trans &kp MINUS &kp EQUAL
-&trans &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT                  &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
-&trans &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR                   &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
+&trans &trans    &trans   &trans    &trans   &trans                     &trans    &kp N7 &kp N8 &kp N9 &kp LBKT  &kp RBKT
+&trans &trans    &trans   &trans    &trans   &trans                     &kp GRAVE &kp N4 &kp N5 &kp N6 &trans    &kp SQT
 &trans &trans    &trans   &trans    &trans   &trans    &trans    &trans &kp N0    &kp N1 &kp N2 &kp N3 &kp BSLH  &trans
                  &trans   &trans    &trans   &trans    &trans    &trans &trans    &trans &trans &trans
             >;
@@ -94,10 +94,10 @@
 // |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |
 //                 |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
-&trans &trans     &trans    &trans    &trans   &trans                       &trans &trans   &trans   &trans   &trans     &trans
-&trans &trans     &trans    &trans    &trans   &trans                       &trans &trans   &trans   &trans   &trans     &trans
-&trans &trans     &trans    &trans    &trans   &trans                       &trans &kp RGUI &kp RALT &kp RCTL &kp RSHIFT &trans
-&trans &trans     &trans    &trans    &trans   &trans    &trans   &trans    &trans &trans   &trans   &trans   &trans     &trans
+&trans &trans  &trans    &trans    &trans   &trans                       &trans &trans   &trans   &trans   &trans     &trans
+&trans &trans  &trans    &trans    &trans   &trans                       &trans &trans   &trans   &trans   &trans     &trans
+&trans &trans  &trans    &trans    &trans   &trans                       &trans &kp RGUI &kp RALT &kp RCTL &kp RSHIFT &trans
+&trans &trans  &trans    &trans    &trans   &trans    &trans   &trans    &trans &trans   &trans   &trans   &trans     &trans
                   &trans    &trans    &trans   &trans    &trans   &trans    &trans &trans   &trans   &trans
             >;
         };
